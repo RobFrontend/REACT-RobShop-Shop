@@ -1,13 +1,197 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+}
+
+h1 {
+  font-size: 4.2rem;
+  color: #757575;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 3.2rem;
+}
+
+.grid--2-cols {
+  grid-template-columns: 80fr 20fr;
+}
+
+.section-shop {
+  display: grid;
+  justify-items: center;
+}
+
+section {
+  width: 100%;
+  padding: 9.6rem 4.8rem;
+}
+.section-products {
+  background-color: #eeee;
+  padding-top: 6.4rem;
+}
+
+.section-shopping-cart {
+  background-color: #ddd;
+}
+
+footer,
+header {
+  background-color: #fefefe;
+}
+
+footer {
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 3.2rem;
+  font-weight: 400;
+  opacity: 0.6;
+}
+/* ///////////////////////////////////// */
+
+.header {
+  padding: 1.6rem 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 30px 0px rgba(66, 68, 90, 0.5);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: -1.5px;
+}
+
+.cart-icon {
+  width: 2.4rem;
+}
+
+.cart-btn {
+  position: relative;
+  color: #333;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 100%;
+  transition: all 0.5s;
+}
+.cart-btn:hover {
+  color: #111;
+  transform: translateY(-0.3rem);
+  box-shadow: 0px 0px 30px -15px rgba(66, 68, 90, 1);
+}
+
+.cart-notification {
+  font-size: 1rem;
+  background-color: #d0342c;
+  color: #fefefe;
+  border-radius: 100%;
+  padding: 0.3rem;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+}
+
+/* /////////////////////////////////////////// */
+
+.product-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6.4rem;
+}
+.product-box {
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0px 15px 30px -15px rgba(66, 68, 90, 0.15);
+}
+.product-img-box {
+  width: 100%;
+  overflow: hidden;
+}
+.product-img {
+  width: 100%;
+  height: 100%;
+}
+.product-text-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.8rem;
+  padding-bottom: 2.4rem;
+  padding-top: 0.8rem;
+}
+.shoe-name {
+  font-size: 3.2rem;
+}
+
+.size-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.p-size {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+.select-size {
+  cursor: pointer;
+  border: none;
+  margin-left: 0.6rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 5px;
+  padding: 0 0.6rem;
+  background-color: #fff;
+}
+.option-size {
+  background-color: #fff;
+}
+
+.shoe-price {
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.buy-btn {
+  cursor: pointer;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fefefe;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  width: max-content;
+  align-self: center;
+  transition: all 0.5s;
+}
+.buy-btn:hover {
+  background-color: #fefefe00;
+  color: #333;
+  box-shadow: 0px 0px 30px -15px rgba(66, 68, 90, 0.5);
+  transform: translateY(-0.3rem);
+}
+.buy-btn:active {
+  background-color: #fefefe00;
+  color: #555;
+  box-shadow: 0px 0px 30px -10px rgba(66, 68, 90, 1);
+  transform: translateY(-0.3rem);
 }
