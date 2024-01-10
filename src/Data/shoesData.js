@@ -1,5 +1,6 @@
 const shoesData = [
   {
+    id: 1,
     brand: "PF. Flyers",
     photoName: "shoes/shoe1.webp",
     name: "PF. Flyers Hi Top",
@@ -8,22 +9,27 @@ const shoesData = [
     sizes: [8, 8.5, 9, 9.5, 10, 10.5, 11],
   },
   {
+    id: 2,
     brand: "Nike",
     photoName: "shoes/shoe2.webp",
     name: "Nike Air Force",
     price: 99.9,
     discount: 0,
     sizes: [7, 8.5, 9, 9.5, 10, 10.5],
+    quantity: 1,
   },
   {
+    id: 3,
     brand: "Jordan",
     photoName: "shoes/shoe3.webp",
     name: "Jordan Retro XIII",
     price: 119.9,
     discount: 0,
     sizes: [8.5, 9, 10, 10.5, 11, 12],
+    quantity: 1,
   },
   {
+    id: 4,
     brand: "Jordan",
     photoName: "shoes/shoe4.webp",
     name: "Jordan Retro III",
@@ -32,6 +38,7 @@ const shoesData = [
     sizes: [7, 7.5, 9, 9.5, 10.5, 11.5],
   },
   {
+    id: 5,
     brand: "Jordan",
     photoName: "shoes/shoe5.webp",
     name: "Jordan Retro I",
@@ -40,6 +47,7 @@ const shoesData = [
     sizes: [6, 7.5, 9, 9.5, 10, 10.5],
   },
   {
+    id: 6,
     brand: "Nike",
     photoName: "shoes/shoe6.webp",
     name: "Nike Air Max 95",
