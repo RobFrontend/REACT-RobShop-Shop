@@ -132,7 +132,6 @@ footer {
   box-shadow: 0px 15px 30px -15px rgba(66, 68, 90, 0.15);
 }
 .product-img-box {
-  width: 100%;
   overflow: hidden;
 }
 .product-img {
@@ -233,6 +232,8 @@ footer {
   margin-bottom: 1.8rem;
   border-radius: 10px;
   padding: 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #eee;
 }
 
 .products-in-cart-boxes::-webkit-scrollbar {
