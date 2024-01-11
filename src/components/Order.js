@@ -43,6 +43,7 @@ export default function Order({ orders, onDeleteOrder, prices, setPrices }) {
             <div className="quantity">
               <p>Quantity: </p>
               <input
+                disabled
                 type="text"
                 value={quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}

@@ -5,7 +5,7 @@ export default function Product({ shoesObj, onAddOrder }) {
   function handleSizeChange(e) {
     setSelectedSize(Number(e.target.value));
   }
-  function handleAddToCart() {
+  function handleAddToCart(e) {
     if (!selectedSize) return;
 
     const newOrder = {
@@ -17,8 +17,19 @@ export default function Product({ shoesObj, onAddOrder }) {
       brand: shoesObj.brand,
       id: Date.now(),
     };
+
+    e.target.textContent = "Added";
+    e.target.style.backgroundColor = "#7da27e";
+    if (e.target.textContent === "Added") {
+      setTimeout(() => {
+        e.target.textContent = "Add to cart";
+        e.target.style = "inherit";
+      }, 1000);
+    }
+
     onAddOrder(newOrder);
   }
+
   return (
     <div className="product-box">
       <div className="product-img-box">
@@ -53,7 +64,7 @@ export default function Product({ shoesObj, onAddOrder }) {
             </p>
           </label>
         </div>
-        <button className="buy-btn" onClick={handleAddToCart}>
+        <button className="buy-btn" onClick={(e) => handleAddToCart(e)}>
           Add to cart
         </button>
       </div>

@@ -7,6 +7,7 @@ const shoesData = [
     price: 69.9,
     discount: 0,
     sizes: [8, 8.5, 9, 9.5, 10, 10.5, 11],
+    quantity: 1,
   },
   {
     id: 2,
@@ -36,6 +37,7 @@ const shoesData = [
     price: 129.9,
     discount: 0,
     sizes: [7, 7.5, 9, 9.5, 10.5, 11.5],
+    quantity: 1,
   },
   {
     id: 5,
@@ -45,6 +47,7 @@ const shoesData = [
     price: 109.9,
     discount: 0,
     sizes: [6, 7.5, 9, 9.5, 10, 10.5],
+    quantity: 1,
   },
   {
     id: 6,
@@ -54,6 +57,7 @@ const shoesData = [
     price: 89.9,
     discount: 0,
     sizes: [6, 6.5, 7, 8, 9.5, 10],
+    quantity: 1,
   },
 ];
 

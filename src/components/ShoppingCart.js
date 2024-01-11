@@ -43,16 +43,18 @@ export default function ShoppingCart({
       <h2>Shopping cart</h2>
       {orders.length > 0 ? (
         <>
-          {orders.map((order) => (
-            <Order
-              orders={order}
-              onDeleteOrder={handleDeleteOrder}
-              onAddOrder={onAddOrder}
-              prices={prices}
-              setPrices={setPrices}
-              key={order.id}
-            />
-          ))}
+          <div className="products-in-cart-boxes">
+            {orders.map((order) => (
+              <Order
+                orders={order}
+                onDeleteOrder={handleDeleteOrder}
+                onAddOrder={onAddOrder}
+                prices={prices}
+                setPrices={setPrices}
+                key={order.id}
+              />
+            ))}
+          </div>
           <div className="promotion-box">
             <h3>Promotion Code:</h3>
             <form className="form-promo" onSubmit={handleSubmit}>

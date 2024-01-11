@@ -33,17 +33,16 @@ h1 {
 .section-shop {
   display: grid;
   justify-items: center;
-  z-index: 2;
   background-color: #eeee;
 }
 
 section {
   width: 100%;
-  padding: 9.6rem 4.8rem;
+  padding: 3.2rem 3.2rem;
+  overflow: hidden;
 }
 .section-products {
   padding: 0 atuo;
-
   padding-top: 6.4rem;
   max-width: 120rem;
 }
@@ -55,7 +54,6 @@ section {
 footer,
 header {
   background-color: #fefefe;
-  z-index: 1;
 }
 
 footer {
@@ -66,6 +64,7 @@ footer {
   opacity: 0.6;
 }
 /* ///////////////////////////////////// */
+/* HEADER */
 
 .sticky {
   position: fixed;
@@ -120,6 +119,7 @@ footer {
 }
 
 /* /////////////////////////////////////////// */
+/* PRODUCT BOX - SHOP */
 
 .product-boxes {
   display: grid;
@@ -214,6 +214,7 @@ footer {
 }
 
 /* ///////////////////////////////// */
+/* SHOPPING CART */
 
 .section-shopping-cart h2 {
   font-size: 2.4rem;
@@ -223,6 +224,33 @@ footer {
 .section-shopping-cart h3 {
   font-size: 1.8rem;
   margin-bottom: 0.4rem;
+}
+
+.products-in-cart-boxes {
+  height: 45vh;
+  overflow-y: scroll;
+  box-shadow: 0px 20px 30px 0px rgba(66, 68, 90, 0.1);
+  margin-bottom: 1.8rem;
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+
+.products-in-cart-boxes::-webkit-scrollbar {
+  width: 2px;
+}
+
+.products-in-cart-boxes::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 10px;
+}
+
+.products-in-cart-boxes::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.products-in-cart-boxes::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .products-in-cart {
@@ -336,7 +364,6 @@ footer {
   opacity: 0.4;
 }
 
-/*  //////////////////////////////*/
 .reset-orders-box {
   margin-top: 4.8rem;
   text-align: end;
