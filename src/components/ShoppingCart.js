@@ -31,6 +31,7 @@ export default function ShoppingCart({
       prices.reduce((acc, price) => acc + price, 0)) *
     promotion
   ).toFixed(2);
+
   function resetOrders() {
     onDeleteOrders();
     setPrices([]);

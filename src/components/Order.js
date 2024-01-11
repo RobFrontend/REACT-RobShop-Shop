@@ -6,16 +6,20 @@ export default function Order({ orders, onDeleteOrder, prices, setPrices }) {
   function addPrices(price) {
     setPrices((prices) => [...prices, price]);
   }
-  function deletePrices(price) {
-    setPrices((prices) => prices.splice(-1));
+  function deletePrices() {
+    setPrices((prices) =>
+      prices.length !== 1
+        ? prices.slice(0, -1)
+        : [...prices.filter((price) => !price)]
+    );
   }
   function plusButton(price) {
     setQuantity(quantity + 1);
     addPrices(price);
   }
-  function minusButton(price) {
+  function minusButton() {
     setQuantity(quantity - 1);
-    deletePrices(price);
+    deletePrices();
   }
 
   return (
@@ -45,9 +49,7 @@ export default function Order({ orders, onDeleteOrder, prices, setPrices }) {
               />
               <button
                 onClick={() =>
-                  quantity > 1
-                    ? minusButton(orders.price)
-                    : onDeleteOrder(orders.id)
+                  quantity > 1 ? minusButton() : onDeleteOrder(orders.id)
                 }
               >
                 -

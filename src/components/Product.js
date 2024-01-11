@@ -18,7 +18,6 @@ export default function Product({ shoesObj, onAddOrder }) {
       id: Date.now(),
     };
     onAddOrder(newOrder);
-    console.log(newOrder);
   }
   return (
     <div className="product-box">
