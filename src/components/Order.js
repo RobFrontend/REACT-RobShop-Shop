@@ -12,12 +12,10 @@ export default function Order({ orders, onDeleteOrder, prices, setPrices }) {
   function plusButton(price) {
     setQuantity(quantity + 1);
     addPrices(price);
-    console.log(prices);
   }
   function minusButton(price) {
     setQuantity(quantity - 1);
     deletePrices(price);
-    console.log(prices);
   }
 
   return (
