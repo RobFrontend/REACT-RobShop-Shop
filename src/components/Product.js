@@ -5,7 +5,7 @@ export default function Product({ shoesObj, onAddOrder }) {
   function handleSizeChange(e) {
     setSelectedSize(Number(e.target.value));
   }
-  function handleAddToCart(size) {
+  function handleAddToCart() {
     if (!selectedSize) return;
 
     const newOrder = {

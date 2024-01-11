@@ -33,6 +33,8 @@ h1 {
 .section-shop {
   display: grid;
   justify-items: center;
+  z-index: 2;
+  background-color: #eeee;
 }
 
 section {
@@ -40,8 +42,10 @@ section {
   padding: 9.6rem 4.8rem;
 }
 .section-products {
-  background-color: #eeee;
+  padding: 0 atuo;
+
   padding-top: 6.4rem;
+  max-width: 120rem;
 }
 
 .section-shopping-cart {
@@ -51,6 +55,7 @@ section {
 footer,
 header {
   background-color: #fefefe;
+  z-index: 1;
 }
 
 footer {
@@ -66,7 +71,6 @@ footer {
   position: fixed;
   width: 100%;
   height: 8rem;
-  z-index: 2;
 }
 
 .header {
@@ -74,7 +78,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 0px 30px 0px rgba(66, 68, 90, 0.5);
+  box-shadow: 0px 0px 30px 0px rgba(66, 68, 90, 0.2);
 }
 
 .logo {
@@ -237,9 +241,7 @@ footer {
 }
 
 .product-in-cart-text {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   padding: 0.6rem 0;
 }
 .in-cart-name {
@@ -257,14 +259,13 @@ footer {
 }
 
 .quantity {
-  position: absolute;
   display: flex;
-  align-items: center;
-  bottom: 0.6rem;
+  align-items: end;
 }
 .quantity p {
   font-size: 1.4rem;
 }
+.reset-orders,
 .add-promo,
 .quantity input,
 .quantity button,
@@ -305,13 +306,16 @@ footer {
   padding: 0.3rem 0.6rem;
   width: 100%;
 }
+.reset-orders,
 .add-promo {
   cursor: pointer;
   transition: all 0.3s;
 }
+.reset-orders:hover,
 .add-promo:hover {
   background-color: #ddd;
 }
+.reset-orders:active,
 .add-promo:active {
   box-shadow: 0px 0px 30px -15px rgba(66, 68, 90, 0.5);
 }
@@ -330,4 +334,14 @@ footer {
 
 .empty-cart {
   opacity: 0.4;
+}
+
+/*  //////////////////////////////*/
+.reset-orders-box {
+  margin-top: 4.8rem;
+  text-align: end;
+}
+.reset-orders {
+  padding: 0.8rem;
+  border-radius: 5px;
 }

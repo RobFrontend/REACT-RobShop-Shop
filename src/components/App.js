@@ -6,15 +6,35 @@ import ShoppingCart from "./ShoppingCart";
 
 function App() {
   const [orders, setOrders] = useState([]);
+  const [cartToggle, setCartToggle] = useState(false);
   function handleAddOrder(order) {
     setOrders((orders) => [...orders, order]);
   }
+  function handleDeleteOrders() {
+    setOrders((order) => [...orders.filter((order) => !order)]);
+  }
+  function toggleCart() {
+    setCartToggle(!cartToggle);
+  }
   return (
     <>
-      <Header orders={orders} />
-      <main className="section-shop grid--2-cols">
+      <Header orders={orders} toggleCart={toggleCart} />
+      <main
+        className={
+          cartToggle === true ? "section-shop grid--2-cols" : "section-shop"
+        }
+      >
         <ProductBox onAddOrder={handleAddOrder} />
-        <ShoppingCart orders={orders} />
+        {cartToggle === true ? (
+          <ShoppingCart
+            orders={orders}
+            onAddOrder={handleAddOrder}
+            onDeleteOrders={handleDeleteOrders}
+            setOrders={setOrders}
+          />
+        ) : (
+          ""
+        )}
       </main>
       <Footer />
     </>

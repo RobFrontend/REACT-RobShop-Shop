@@ -1,9 +1,9 @@
-export default function Header({ orders }) {
+export default function Header({ orders, toggleCart }) {
   return (
     <header>
       <div className="header">
         <p className="logo">-RobShop-</p>
-        <button className="cart-btn">
+        <button className="cart-btn" onClick={toggleCart}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -1,11 +1,16 @@
 import { useState } from "react";
 import Order from "./Order";
 
-export default function ShoppingCart({ orders }) {
-  const [quantity, setQuantity] = useState(1);
+export default function ShoppingCart({
+  orders,
+  onAddOrder,
+  onDeleteOrders,
+  setOrders,
+}) {
   const promotionCode = "RobShop30";
   const [promotion, setPromotion] = useState(1);
   const [description, setDescription] = useState("");
+  const [prices, setPrices] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -13,6 +18,23 @@ export default function ShoppingCart({ orders }) {
     if (description === promotionCode) setPromotion(0.7);
     if (description !== promotionCode);
     setDescription("");
+  }
+  function handleDeleteOrder(id) {
+    setOrders((orders) => orders.filter((order) => order.id !== id));
+  }
+  const priceBefotePromo = (
+    orders.reduce((acc, order) => acc + order.price, 0) +
+    prices.reduce((acc, price) => acc + price, 0)
+  ).toFixed(2);
+  const finalPrice = (
+    (orders.reduce((acc, order) => acc + order.price, 0) +
+      prices.reduce((acc, price) => acc + price, 0)) *
+    promotion
+  ).toFixed(2);
+  function resetOrders() {
+    onDeleteOrders();
+    setPrices([]);
+    setPromotion(1);
   }
 
   return (
@@ -23,8 +45,10 @@ export default function ShoppingCart({ orders }) {
           {orders.map((order) => (
             <Order
               orders={order}
-              quantity={quantity}
-              setQuantity={setQuantity}
+              onDeleteOrder={handleDeleteOrder}
+              onAddOrder={onAddOrder}
+              prices={prices}
+              setPrices={setPrices}
               key={order.id}
             />
           ))}
@@ -43,16 +67,29 @@ export default function ShoppingCart({ orders }) {
           </div>
           <div className="summary-box">
             <h3>Summary:</h3>
-            <p className="price-all">
-              $
-              {orders
-                .reduce(
-                  (acc, order) => acc + order.price * quantity * promotion,
-                  0
-                )
-                .toFixed(2)}
-            </p>
+            {promotion === 1 ? (
+              <p className="price-all">${finalPrice}</p>
+            ) : (
+              <p className="price-all">
+                <span
+                  style={{
+                    textDecoration: "line-through",
+                    opacity: "0.5",
+                    fontSize: "2.4rem",
+                  }}
+                >
+                  ${priceBefotePromo}
+                </span>{" "}
+                ${finalPrice}
+              </p>
+            )}
+
             <button>Buy</button>
+          </div>
+          <div className="reset-orders-box">
+            <button className="reset-orders" onClick={resetOrders}>
+              Reset cart
+            </button>
           </div>
         </>
       ) : (
