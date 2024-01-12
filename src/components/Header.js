@@ -1,8 +1,55 @@
+import { useState } from "react";
+
 export default function Header({ orders, toggleCart }) {
+  const [info, setinfo] = useState(false);
   return (
     <header>
       <div className="header">
         <p className="logo">-RobShop-</p>
+
+        <p className={info === true ? "p-info" : "p-info opacity"}>
+          Welcome to my second React project. Use 'RobShop30' in shopping cart
+          for 30% discount for every item. Decrease quantity to 0 to remove item
+          from shopping cart or use Reset button to clear orders and reset
+          discount.
+        </p>
+
+        {info === false ? (
+          <button className="cart-btn" onClick={() => setinfo(true)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="cart-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+              />
+            </svg>
+          </button>
+        ) : (
+          <button className="cart-btn" onClick={() => setinfo(false)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="cart-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </button>
+        )}
+
         <button className="cart-btn" onClick={toggleCart}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

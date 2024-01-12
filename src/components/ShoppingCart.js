@@ -6,6 +6,7 @@ export default function ShoppingCart({
   onAddOrder,
   onDeleteOrders,
   setOrders,
+  toggleCart,
 }) {
   const promotionCode = "RobShop30";
   const [promotion, setPromotion] = useState(1);
