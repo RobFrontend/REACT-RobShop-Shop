@@ -64,7 +64,7 @@ export default function ShoppingCart({
                 type="text"
                 placeholder="Promo Code"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value.trim())}
               />
               <button className="add-promo">Add</button>
             </form>
