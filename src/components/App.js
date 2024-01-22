@@ -28,10 +28,10 @@ function App() {
     [orders]
   );
   function handleAddOrder(order) {
-    setOrders((orders) => [...orders, order]);
+    setOrders((orders) => orders && [...orders, order]);
   }
   function handleDeleteOrders() {
-    setOrders((orders) => [...orders.filter((order) => !order)]);
+    setOrders((orders) => orders && [...orders.filter((order) => !order)]);
   }
   function toggleCart() {
     setCartToggle(!cartToggle);

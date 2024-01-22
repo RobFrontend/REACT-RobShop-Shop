@@ -4,9 +4,9 @@ export default function Order({ order, orders, setOrders, onDeleteOrder }) {
   const [quantity, setQuantity] = useState(order.quantity);
 
   function plusButton() {
-    const existingOrder = orders.find(
-      (o) => (o.name === order.name) & (o.size === order.size)
-    );
+    const existingOrder =
+      orders &&
+      orders.find((o) => (o.name === order.name) & (o.size === order.size));
 
     if (existingOrder) {
       setOrders((orders) =>
@@ -18,9 +18,9 @@ export default function Order({ order, orders, setOrders, onDeleteOrder }) {
   }
 
   function minusButton() {
-    const existingOrder = orders.find(
-      (o) => (o.name === order.name) & (o.size === order.size)
-    );
+    const existingOrder =
+      orders &&
+      orders.find((o) => (o.name === order.name) & (o.size === order.size));
     if (existingOrder) {
       setOrders((orders) =>
         orders.map((o) =>

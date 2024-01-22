@@ -19,14 +19,17 @@ export default function ShoppingCart({
     setDescription("");
   }
   function handleDeleteOrder(id) {
-    setOrders((orders) => orders.filter((order) => order.id !== id));
+    setOrders((orders) => orders && orders.filter((order) => order.id !== id));
   }
-  const priceBeforePromo = orders
-    .reduce((acc, order) => acc + order.price * order.quantity, 0)
-    .toFixed(2);
+  const priceBeforePromo =
+    orders &&
+    orders
+      .reduce((acc, order) => acc + order.price * order.quantity, 0)
+      .toFixed(2);
   const finalPrice = (
+    orders &&
     orders.reduce((acc, order) => acc + order.price * order.quantity, 0) *
-    promotion
+      promotion
   ).toFixed(2);
 
   function resetOrders() {
