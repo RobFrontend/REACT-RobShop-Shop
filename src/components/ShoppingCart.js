@@ -30,7 +30,7 @@ export default function ShoppingCart({
     orders &&
     orders.reduce((acc, order) => acc + order.price * order.quantity, 0) *
       promotion
-  ).toFixed(2);
+  )?.toFixed(2);
 
   function resetOrders() {
     onDeleteOrders();
