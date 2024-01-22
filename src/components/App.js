@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import ProductBox from "./ProductBox";
@@ -6,18 +6,27 @@ import ShoppingCart from "./ShoppingCart";
 import shoesData from "../Data/shoesData";
 
 function App() {
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
   // const [orders, setOrders] = useState(function () {
   //   const storedValue = localStorage.getItem("orders");
   //   return JSON.parse(storedValue);
   // });
+  const [orders, setOrders] = useState(() => {
+    try {
+      const storedValue = localStorage.getItem("orders");
+      return storedValue ? JSON.parse(storedValue) : [];
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
+      return [];
+    }
+  });
   const [cartToggle, setCartToggle] = useState(false);
-  // useEffect(
-  //   function () {
-  //     localStorage.setItem("orders", JSON.stringify(orders));
-  //   },
-  //   [orders]
-  // );
+  useEffect(
+    function () {
+      localStorage.setItem("orders", JSON.stringify(orders));
+    },
+    [orders]
+  );
   function handleAddOrder(order) {
     setOrders((orders) => [...orders, order]);
   }
