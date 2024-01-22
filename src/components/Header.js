@@ -67,7 +67,7 @@ export default function Header({ orders, toggleCart }) {
             />
           </svg>
 
-          {orders.length > 0 ? (
+          {orders.length >= 1 ? (
             <span className="cart-notification">{orders.length}</span>
           ) : (
             ""
