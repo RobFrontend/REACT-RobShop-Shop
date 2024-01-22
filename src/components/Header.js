@@ -67,11 +67,11 @@ export default function Header({ orders, toggleCart }) {
             />
           </svg>
 
-          {/* {orders.length !== null ? (
+          {orders.length !== null ? (
             <span className="cart-notification">{orders.length}</span>
           ) : (
             ""
-          )} */}
+          )}
         </button>
       </div>
     </header>
