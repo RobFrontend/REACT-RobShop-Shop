@@ -72,7 +72,7 @@ export default function ShoppingCart({
           <div className="summary-box">
             <h3>Summary:</h3>
             {promotion === 1 ? (
-              <p className="price-all">${finalPrice}</p>
+              <p className="price-all">${orders && finalPrice}</p>
             ) : (
               <p className="price-all">
                 <span
@@ -82,9 +82,9 @@ export default function ShoppingCart({
                     fontSize: "2.4rem",
                   }}
                 >
-                  ${priceBeforePromo}
+                  ${orders && priceBeforePromo}
                 </span>{" "}
-                ${finalPrice}
+                ${orders && finalPrice}
               </p>
             )}
 
