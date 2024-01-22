@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import ProductBox from "./ProductBox";
@@ -6,8 +6,18 @@ import ShoppingCart from "./ShoppingCart";
 import shoesData from "../Data/shoesData";
 
 function App() {
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState(function () {
+    const storedValue = localStorage.getItem("orders");
+    return JSON.parse(storedValue);
+  });
   const [cartToggle, setCartToggle] = useState(false);
+  useEffect(
+    function () {
+      localStorage.setItem("orders", JSON.stringify(orders));
+    },
+    [orders]
+  );
   function handleAddOrder(order) {
     setOrders((orders) => [...orders, order]);
   }
@@ -26,7 +36,12 @@ function App() {
           cartToggle === true ? "section-shop grid--2-cols" : "section-shop"
         }
       >
-        <ProductBox onAddOrder={handleAddOrder} shoesData={shoesData} />
+        <ProductBox
+          orders={orders}
+          setOrders={setOrders}
+          onAddOrder={handleAddOrder}
+          shoesData={shoesData}
+        />
         {cartToggle === true ? (
           <ShoppingCart
             orders={orders}

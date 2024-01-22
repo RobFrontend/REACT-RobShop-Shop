@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Product({ shoesObj, onAddOrder }) {
+export default function Product({ shoesObj, orders, setOrders, onAddOrder }) {
   const [selectedSize, setSelectedSize] = useState(shoesObj.sizes[0]);
   function handleSizeChange(e) {
     setSelectedSize(Number(e.target.value));
@@ -8,16 +8,32 @@ export default function Product({ shoesObj, onAddOrder }) {
 
   function handleAddToCart(e) {
     if (!selectedSize) return;
-    const newOrder = {
-      photoName: shoesObj.photoName,
-      name: shoesObj.name,
-      price: shoesObj.price,
-      discount: shoesObj.discount,
-      size: selectedSize,
-      brand: shoesObj.brand,
-      id: Date.now(),
-    };
+    const existingOrder = orders.find(
+      (order) => order.name === shoesObj.name && order.size === selectedSize
+    );
 
+    if (existingOrder) {
+      setOrders((orders) =>
+        orders.map((order) =>
+          order === existingOrder
+            ? { ...order, quantity: order.quantity + 1 }
+            : order
+        )
+      );
+    } else {
+      const newOrder = {
+        photoName: shoesObj.photoName,
+        name: shoesObj.name,
+        price: shoesObj.price,
+        discount: shoesObj.discount,
+        size: selectedSize,
+        brand: shoesObj.brand,
+        id: Date.now(),
+        quantity: 1,
+      };
+
+      onAddOrder(newOrder);
+    }
     e.target.textContent = "Added";
     e.target.style.backgroundColor = "#7da27e";
     if (e.target.textContent === "Added") {
@@ -26,8 +42,6 @@ export default function Product({ shoesObj, onAddOrder }) {
         e.target.style = "inherit";
       }, 1000);
     }
-
-    onAddOrder(newOrder);
   }
 
   return (

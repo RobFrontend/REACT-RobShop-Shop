@@ -2,7 +2,12 @@ import { useState } from "react";
 
 import Product from "./Product";
 
-export default function ProductBox({ onAddOrder, shoesData }) {
+export default function ProductBox({
+  orders,
+  setOrders,
+  onAddOrder,
+  shoesData,
+}) {
   const [sort, setSort] = useState("default");
   const [sortBrand, setSortBrand] = useState("all");
   const [search, setSearch] = useState("");
@@ -82,7 +87,13 @@ export default function ProductBox({ onAddOrder, shoesData }) {
 
       <div className="product-boxes">
         {shoesData.map((shoe) => (
-          <Product shoesObj={shoe} key={shoe.id} onAddOrder={onAddOrder} />
+          <Product
+            orders={orders}
+            setOrders={setOrders}
+            shoesObj={shoe}
+            key={shoe.id}
+            onAddOrder={onAddOrder}
+          />
         ))}
       </div>
     </section>

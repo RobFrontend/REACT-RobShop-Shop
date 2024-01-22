@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function Header({ orders, toggleCart }) {
   const [info, setinfo] = useState(false);
+
   return (
     <header>
       <div className="header">

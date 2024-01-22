@@ -1,25 +1,33 @@
 import { useState } from "react";
 
-export default function Order({ orders, onDeleteOrder, prices, setPrices }) {
-  const [quantity, setQuantity] = useState(1);
+export default function Order({ order, orders, setOrders, onDeleteOrder }) {
+  const [quantity, setQuantity] = useState(order.quantity);
 
-  function addPrices(price) {
-    setPrices((prices) => [...prices, price]);
-  }
-  function deletePrices() {
-    setPrices((prices) =>
-      prices.length !== 1
-        ? prices.slice(0, -1)
-        : [...prices.filter((price) => !price)]
+  function plusButton() {
+    const existingOrder = orders.find(
+      (o) => (o.name === order.name) & (o.size === order.size)
     );
+
+    if (existingOrder) {
+      setOrders((orders) =>
+        orders.map((o) =>
+          o === existingOrder ? { ...o, quantity: o.quantity + 1 } : o
+        )
+      );
+    }
   }
-  function plusButton(price) {
-    setQuantity(quantity + 1);
-    addPrices(price);
-  }
+
   function minusButton() {
-    setQuantity(quantity - 1);
-    deletePrices();
+    const existingOrder = orders.find(
+      (o) => (o.name === order.name) & (o.size === order.size)
+    );
+    if (existingOrder) {
+      setOrders((orders) =>
+        orders.map((o) =>
+          o === existingOrder ? { ...o, quantity: o.quantity - 1 } : o
+        )
+      );
+    }
   }
 
   return (
@@ -29,36 +37,34 @@ export default function Order({ orders, onDeleteOrder, prices, setPrices }) {
           <div className="product-img-box">
             <img
               className="product-img"
-              src={orders.photoName}
-              alt={orders.name}
+              src={order.photoName}
+              alt={order.name}
             />
           </div>
           <div className="product-in-cart-text">
-            <p className="in-cart-name">{orders.name}</p>
+            <p className="in-cart-name">{order.name}</p>
             <p className="in-cart-price">
-              ${(orders.price * quantity).toFixed(2)}
+              ${(order.price * order.quantity).toFixed(2)}
             </p>
-            <p className="in-cart-size">US {orders.size}</p>
+            <p className="in-cart-size">US {order.size}</p>
 
             <div className="quantity">
               <p>Quantity: </p>
               <input
                 disabled
                 type="text"
-                value={quantity}
+                value={order.quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}
               />
               <button
                 onClick={() =>
-                  quantity > 1 ? minusButton() : onDeleteOrder(orders.id)
+                  order.quantity > 1 ? minusButton() : onDeleteOrder(order.id)
                 }
               >
                 -
               </button>
               <button
-                onClick={() =>
-                  quantity < 50 ? plusButton(orders.price) : quantity
-                }
+                onClick={() => (order.quantity < 50 ? plusButton() : quantity)}
               >
                 +
               </button>

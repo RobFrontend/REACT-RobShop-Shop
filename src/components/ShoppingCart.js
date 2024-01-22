@@ -6,12 +6,10 @@ export default function ShoppingCart({
   onAddOrder,
   onDeleteOrders,
   setOrders,
-  toggleCart,
 }) {
   const promotionCode = "RobShop30";
   const [promotion, setPromotion] = useState(1);
   const [description, setDescription] = useState("");
-  const [prices, setPrices] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -23,19 +21,17 @@ export default function ShoppingCart({
   function handleDeleteOrder(id) {
     setOrders((orders) => orders.filter((order) => order.id !== id));
   }
-  const priceBefotePromo = (
-    orders.reduce((acc, order) => acc + order.price, 0) +
-    prices.reduce((acc, price) => acc + price, 0)
-  ).toFixed(2);
+  const priceBeforePromo = orders
+    .reduce((acc, order) => acc + order.price * order.quantity, 0)
+    .toFixed(2);
   const finalPrice = (
-    (orders.reduce((acc, order) => acc + order.price, 0) +
-      prices.reduce((acc, price) => acc + price, 0)) *
+    orders.reduce((acc, order) => acc + order.price * order.quantity, 0) *
     promotion
   ).toFixed(2);
 
   function resetOrders() {
     onDeleteOrders();
-    setPrices([]);
+
     setPromotion(1);
   }
 
@@ -47,11 +43,11 @@ export default function ShoppingCart({
           <div className="products-in-cart-boxes">
             {orders.map((order) => (
               <Order
-                orders={order}
+                orders={orders}
+                order={order}
+                setOrders={setOrders}
                 onDeleteOrder={handleDeleteOrder}
                 onAddOrder={onAddOrder}
-                prices={prices}
-                setPrices={setPrices}
                 key={order.id}
               />
             ))}
@@ -69,6 +65,7 @@ export default function ShoppingCart({
               <button className="add-promo">Add</button>
             </form>
           </div>
+
           <div className="summary-box">
             <h3>Summary:</h3>
             {promotion === 1 ? (
@@ -82,7 +79,7 @@ export default function ShoppingCart({
                     fontSize: "2.4rem",
                   }}
                 >
-                  ${priceBefotePromo}
+                  ${priceBeforePromo}
                 </span>{" "}
                 ${finalPrice}
               </p>
