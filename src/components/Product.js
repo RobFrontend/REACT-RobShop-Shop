@@ -8,9 +8,11 @@ export default function Product({ shoesObj, orders, setOrders, onAddOrder }) {
 
   function handleAddToCart(e) {
     if (!selectedSize) return;
-    const existingOrder = orders.find(
-      (order) => order.name === shoesObj.name && order.size === selectedSize
-    );
+    const existingOrder =
+      orders &&
+      orders.find(
+        (order) => order.name === shoesObj.name && order.size === selectedSize
+      );
 
     if (existingOrder) {
       setOrders((orders) =>
