@@ -22,7 +22,7 @@ function App() {
     setOrders((orders) => [...orders, order]);
   }
   function handleDeleteOrders() {
-    setOrders((order) => [...orders.filter((order) => !order)]);
+    setOrders((orders) => [...orders.filter((order) => !order)]);
   }
   function toggleCart() {
     setCartToggle(!cartToggle);
