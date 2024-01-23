@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Order from "./Order";
+import { useFocus } from "../customHooks/useFocus";
 
 export default function ShoppingCart({
   orders,
@@ -10,6 +11,15 @@ export default function ShoppingCart({
   const promotionCode = "RobShop30";
   const [promotion, setPromotion] = useState(1);
   const [description, setDescription] = useState("");
+  const inputPromoEl = useRef(null);
+
+  useFocus(inputPromoEl, orders);
+  // useEffect(
+  //   function () {
+  //     inputPromoEl.current.focus();
+  //   },
+  //   [orders]
+  // );
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -64,6 +74,7 @@ export default function ShoppingCart({
                 placeholder="Promo Code"
                 value={description}
                 onChange={(e) => setDescription(e.target.value.trim())}
+                ref={inputPromoEl}
               />
               <button className="add-promo">Add</button>
             </form>
@@ -97,7 +108,9 @@ export default function ShoppingCart({
           </div>
         </>
       ) : (
-        <h2 className="empty-cart">Empty</h2>
+        <h2 className="empty-cart" ref={inputPromoEl}>
+          Empty
+        </h2>
       )}
     </section>
   );

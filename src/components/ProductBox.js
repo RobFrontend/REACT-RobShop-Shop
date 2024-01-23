@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import Product from "./Product";
+import { useFocus } from "../customHooks/useFocus";
 
 export default function ProductBox({
   orders,
@@ -11,6 +12,17 @@ export default function ProductBox({
   const [sort, setSort] = useState("default");
   const [sortBrand, setSortBrand] = useState("all");
   const [search, setSearch] = useState("");
+
+  const inputSearch = useRef(null);
+
+  useFocus(inputSearch, sort, sortBrand);
+
+  // useEffect(
+  //   function () {
+  //     inputSearch.current.focus();
+  //   },
+  //   [sort, sortBrand]
+  // );
 
   if (sort === "brandZ") shoesData.sort((a, b) => a.name.localeCompare(b.name));
   if (sort === "brandA") shoesData.sort((a, b) => b.name.localeCompare(a.name));
@@ -81,6 +93,7 @@ export default function ProductBox({
             value={search}
             onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
             placeholder="Search...          (Enter for reset)"
+            ref={inputSearch}
           />
         </form>
       </div>
