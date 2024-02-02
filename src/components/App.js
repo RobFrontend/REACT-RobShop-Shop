@@ -4,7 +4,7 @@ import Header from "./Header";
 import ProductBox from "./ProductBox";
 import ShoppingCart from "./ShoppingCart";
 import shoesData from "../Data/shoesData";
-import { useLocalStorage } from "../customHooks/useLocalStorage";
+// import { useLocalStorage } from "../customHooks/useLocalStorage";
 
 function App() {
   // const [orders, setOrders] = useState([]);
@@ -12,17 +12,19 @@ function App() {
   //   const storedValue = localStorage.getItem("orders");
   //   return JSON.parse(storedValue);
   // });
-  // /////////////////////////
-  // const [orders, setOrders] = useState(() => {
-  //   try {
-  //     const storedValue = localStorage.getItem("orders");
-  //     return storedValue ? JSON.parse(storedValue) : [];
-  //   } catch (error) {
-  //     console.error("Error accessing localStorage:", error);
-  //     return [];
-  //   }
-  // });
-  const [orders, setOrders] = useLocalStorage([], "orders");
+  /////////////////////////
+  const [orders, setOrders] = useState(() => {
+    try {
+      const storedValue = localStorage.getItem("orders");
+      return storedValue ? JSON.parse(storedValue) : [];
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
+      return [];
+    }
+  });
+
+  // const [orders, setOrders] = useLocalStorage([], "orders");
+  console.log(orders);
   const [cartToggle, setCartToggle] = useState(false);
 
   useEffect(
@@ -32,11 +34,15 @@ function App() {
     [orders]
   );
   function handleAddOrder(order) {
-    setOrders((orders) => orders && [...orders, order]);
+    setOrders((orders) => [...orders, order]);
   }
+  // function handleDeleteOrders() {
+  //   setOrders((orders) => orders && [...orders.filter((order) => !order)]);
+  // }
   function handleDeleteOrders() {
-    setOrders((orders) => orders && [...orders.filter((order) => !order)]);
+    setOrders((orders) => orders.filter((order) => !order));
   }
+
   function toggleCart() {
     setCartToggle(!cartToggle);
   }

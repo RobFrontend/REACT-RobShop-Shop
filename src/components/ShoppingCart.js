@@ -51,7 +51,7 @@ export default function ShoppingCart({
   return (
     <section className="section-shopping-cart">
       <h2>Shopping cart</h2>
-      {orders.length > 0 ? (
+      {orders && orders.length > 0 ? (
         <>
           <div className="products-in-cart-boxes">
             {orders.map((order) => (
